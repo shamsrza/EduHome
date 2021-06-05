@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Home Index";
     HomeViewModel homeViewModel = Model;
-
+    int count = 0;
 }
 
 <!-- Background Area Start -->
@@ -61,7 +61,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="about-content">
-                    <h2>@Html.Raw(homeViewModel.HomeAbout.Title)</span></h2>
+                    <h2>@Html.Raw(homeViewModel.HomeAbout.Title)</h2>
                     <p>@Html.Raw(homeViewModel.HomeAbout.Description)</p>
                     <a class="default-btn" href="about.html">view courses</a>
                 </div>
@@ -88,71 +88,60 @@
             </div>
         </div>
         <div class="row">
+            @foreach(var item in homeViewModel.HomeCourseOffers)
+            {
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="single-course">
                     <div class="course-img">
                         <a href="course-details.html">
-                            <img src="~/img/course/course1.jpg" alt="course">
+                            <img src="~/img/course/@item.Image" alt="course">
                             <div class="course-hover">
                                 <i class="fa fa-link"></i>
                             </div>
                         </a>
                     </div>
                     <div class="course-content">
-                        <h3><a href="course-details.html">CSE ENGINEERING</a></h3>
-                        <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness</p>
+                        <h3><a href="course-details.html">@item.Title</a></h3>
+                        <p>@item.Description</p>
                         <a class="default-btn" href="course-details.html">read more</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-course">
-                    <div class="course-img">
-                        <a href="course-details.html">
-                            <img src="~/img/course/course2.jpg" alt="course">
-                            <div class="course-hover">
-                                <i class="fa fa-link"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="course-content">
-                        <h3><a href="course-details.html">political science</a></h3>
-                        <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness</p>
-                        <a class="default-btn" href="course-details.html">read more</a>
-                    </div>
+            }
+
+            @*<div class="col-md-4 hidden-sm col-xs-12"> //////////////???????????? hidden-sm setting foreache girende itir -responsivlik
+            <div class="single-course">
+                <div class="course-img">
+                    <a href="course-details.html">
+                        <img src="~/img/course/course3.jpg" alt="course">
+                        <div class="course-hover">
+                            <i class="fa fa-link"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="course-content">
+                    <h3><a href="course-details.html">micro biology</a></h3>
+                    <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness</p>
+                    <a class="default-btn" href="course-details.html">read more</a>
                 </div>
             </div>
-            <div class="col-md-4 hidden-sm col-xs-12">
-                <div class="single-course">
-                    <div class="course-img">
-                        <a href="course-details.html">
-                            <img src="~/img/course/course3.jpg" alt="course">
-                            <div class="course-hover">
-                                <i class="fa fa-link"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="course-content">
-                        <h3><a href="course-details.html">micro biology</a></h3>
-                        <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human happiness</p>
-                        <a class="default-btn" href="course-details.html">read more</a>
-                    </div>
-                </div>
-            </div>
+        </div>*@
         </div>
     </div>
 </div>
 <!-- Courses Area End -->
+
+
 <!-- Notice Start -->
 <section class="notice-area two pt-140">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="notice-right-wrapper mb-25 pb-25">
-                    <h3>TAKE A VIDEO TOUR</h3>
+                    <h3>@homeViewModel.HomeVideoTour.Title</h3>
                     <div class="notice-video">
                         <div class="video-icon video-hover">
-                            <a class="video-popup" href="https://www.youtube.com/watch?v=to6Ghf8UL7o">
+                            <a class="video-popup" href="@homeViewModel.HomeVideoTour.Video">
                                 <i class="zmdi zmdi-play"></i>
                             </a>
                         </div>
@@ -163,30 +152,13 @@
                 <div class="notice-left-wrapper">
                     <h3>notice board</h3>
                     <div class="notice-left">
-                        <div class="single-notice-left mb-23 pb-20">
-                            <h4>5, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left hidden-sm mb-23 pb-20">
-                            <h4>4, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left pb-70">
-                            <h4>3, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left mb-23 pb-20">
-                            <h4>5, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left hidden-sm mb-23 pb-20">
-                            <h4>4, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
-                        <div class="single-notice-left pb-70">
-                            <h4>3, June 2017</h4>
-                            <p>I must explain to you how all this mistaken idea of denouncing plasure and praising pain was born and I will give you a complete </p>
-                        </div>
+                        @foreach (var item in homeViewModel.HomeNoticeBoard)
+                        {
+                            <div class="single-notice-left mb-23 pb-20">
+                                <h4>@item.Title</h4>
+                                <p>@item.Description </p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -194,6 +166,8 @@
     </div>
 </section>
 <!-- Notice End -->
+
+
 <!-- Event Area Start -->
 <div class="event-area two text-center pt-100 pb-145">
     <div class="container">
@@ -206,78 +180,42 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12">
+            @foreach (var item in homeViewModel.HomeEventArea)
+            {
+                if (count == 0)
+                {
+                    @Html.Raw("<div class='col-md-6 col-sm-12 col-xs-12'>");
+                }
+                else
+                {
+                    @Html.Raw("</div>");
+                    @Html.Raw("<div class='col-md-6 col-sm-12 col-xs-12'>");
+                }
+
                 <div class="single-event mb-35">
                     <div class="event-img">
-                        <a href="event-details.html"><img src="~/img/event/event1.jpg" alt="event"></a>
+                        <a href="event-details.html"><img src="~/img/event/@item.Image" alt="event"></a>
                     </div>
                     <div class="event-content text-left">
-                        <h3>20 June 2017</h3>
-                        <h4><a href="event-details.html">ADVANCE PHP WORKSHOP</a></h4>
+                        <h3>@item.Date</h3>
+                        <h4><a href="event-details.html">@item.Time</a></h4>
                         <ul>
-                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
-                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
+                            <li><i class="fa fa-clock-o"></i>@item.Time</li>
+                            <li><i class="fa fa-map-marker"></i>@item.Location</li>
                         </ul>
                         <div class="event-content-right">
                             <a class="default-btn" href="event-details.html">join now</a>
                         </div>
                     </div>
                 </div>
-                <div class="single-event hidden-sm hidden-xs">
-                    <div class="event-img">
-                        <a href="event-details.html"><img src="~/img/event/event3.jpg" alt="event"></a>
-                    </div>
-                    <div class="event-content text-left">
-                        <h3>16 June 2017</h3>
-                        <h4><a href="event-details.html">learning english history</a></h4>
-                        <ul>
-                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
-                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
-                        </ul>
-                        <div class="event-content-right">
-                            <a class="default-btn" href="event-details.html">join now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="single-event mb-35">
-                    <div class="event-img">
-                        <a href="event-details.html"><img src="~/img/event/event2.jpg" alt="event"></a>
-                    </div>
-                    <div class="event-content text-left">
-                        <h3>18 June 2017</h3>
-                        <h4><a href="event-details.html">DIGITAL MARKETING ANALYSIS</a></h4>
-                        <ul>
-                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
-                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
-                        </ul>
-                        <div class="event-content-right">
-                            <a class="default-btn" href="event-details.html">join now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-event hidden-sm hidden-xs">
-                    <div class="event-img">
-                        <a href="event-details.html"><img src="~/img/event/event3.jpg" alt="event"></a>
-                    </div>
-                    <div class="event-content text-left">
-                        <h3>14 June 2017</h3>
-                        <h4><a href="event-details.html">UI & UX DESIGNER MEETUP</a></h4>
-                        <ul>
-                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
-                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
-                        </ul>
-                        <div class="event-content-right">
-                            <a class="default-btn" href="event-details.html">join now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                count++;
+            }
+            @Html.Raw("</div>");
         </div>
     </div>
 </div>
 <!-- Event Area End -->
+
 <!-- Testimonial Area Start -->
 <div class="testimonial-area pt-110 pb-105 text-center">
     <div class="container">
@@ -287,12 +225,12 @@
                     <div class="single-testimonial">
                         <div class="testimonial-info">
                             <div class="testimonial-img">
-                                <img src="~/img/testimonial/testimonial.jpg" alt="testimonial">
+                                <img src="~/img/testimonial/@homeViewModel.Testimonial.Image" alt="testimonial">
                             </div>
                             <div class="testimonial-content">
-                                <p>I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual</p>
-                                <h4>David Morgan</h4>
-                                <h5>Student, CSE</h5>
+                                <p>@homeViewModel.Testimonial.Description</p>
+                                <h4>@homeViewModel.Testimonial.Fullname</h4>
+                                <h5>@homeViewModel.Testimonial.Position</h5>
                             </div>
                         </div>
                     </div>
@@ -302,6 +240,8 @@
     </div>
 </div>
 <!-- Testimonial Area End -->
+
+
 <!-- Blog Area Start -->
 <div class="blog-area pt-150 pb-150">
     <div class="container">
@@ -314,63 +254,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <a href="blog-details.html"><img src="~/img/blog/blog1.jpg" alt="blog"></a>
-                        <div class="blog-hover">
-                            <a href="blog-details.html"><i class="fa fa-link"></i></a>
+            @foreach (var item in homeViewModel.HomeBlogArea)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-blog">
+                        <div class="blog-img">
+                            <a href="blog-details.html"><img src="~/img/blog/@item.Image" alt="blog"></a>
+                            <div class="blog-hover">
+                                <a href="blog-details.html"><i class="fa fa-link"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-top">
-                            <p>By Alex  /  June 20, 2017  /  <i class="fa fa-comments-o"></i> 4</p>
-                        </div>
-                        <div class="blog-bottom">
-                            <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
-                            <a href="blog-details.html">read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <a href="blog-details.html"><img src="~/img/blog/blog2.jpg" alt="blog"></a>
-                        <div class="blog-hover">
-                            <a href="blog-details.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-top">
-                            <p>By Alex  /  June 20, 2017  /  <i class="fa fa-comments-o"></i> 4</p>
-                        </div>
-                        <div class="blog-bottom">
-                            <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
-                            <a href="blog-details.html">read more</a>
+                        <div class="blog-content">
+                            <div class="blog-top">
+                                <p>@item.Author /  @item.Date / <i class="fa fa-comments-o"></i> @item.CommentsCount</p>
+                            </div>
+                            <div class="blog-bottom">
+                                <h2><a href="blog-details.html">@item.Title </a></h2>
+                                <a href="blog-details.html">read more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 hidden-sm col-xs-12">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <a href="blog-details.html"><img src="~/img/blog/blog3.jpg" alt="blog"></a>
-                        <div class="blog-hover">
-                            <a href="blog-details.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-top">
-                            <p>By Alex  /  June 20, 2017  /  <i class="fa fa-comments-o"></i> 4</p>
-                        </div>
-                        <div class="blog-bottom">
-                            <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
-                            <a href="blog-details.html">read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>

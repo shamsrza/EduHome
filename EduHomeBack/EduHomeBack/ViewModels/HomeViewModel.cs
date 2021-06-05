@@ -10,8 +10,13 @@ namespace EduHomeBack.ViewModels
     {
         public Slider Slider { get; set; }
         public List<SliderImage> SliderImages { get; set; }
-
         public List<Service> Services { get; set; }
         public HomeAbout HomeAbout { get; set; }
+        public List<HomeCourseOffers> HomeCourseOffers { get; set; }
+        public HomeVideoTour HomeVideoTour { get; set; }
+        public List<HomeNoticeBoard> HomeNoticeBoard { get; set; }
+        public List<HomeEventArea> HomeEventArea { get; set; }
+        public Testimonial Testimonial { get; set; }
+        public List<HomeBlogArea> HomeBlogArea { get; set; }
     }
 }
