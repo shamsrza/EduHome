@@ -10,5 +10,8 @@ namespace EduHomeBack.ViewModels
     {
         public Slider Slider { get; set; }
         public List<SliderImage> SliderImages { get; set; }
+
+        public List<Service> Services { get; set; }
+        public HomeAbout HomeAbout { get; set; }
     }
 }

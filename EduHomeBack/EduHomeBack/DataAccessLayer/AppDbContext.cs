@@ -15,5 +15,10 @@ namespace EduHomeBack.DataAccessLayer
 
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<SliderImage> SliderImages { get; set; }
+
+        public DbSet<Service> Services { get; set; }
+
+        public DbSet<HomeAbout> HomeAbout { get; set; }
+
     }
 }

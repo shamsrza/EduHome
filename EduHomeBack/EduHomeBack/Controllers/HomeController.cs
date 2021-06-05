@@ -21,11 +21,15 @@ namespace EduHomeBack.Controllers
         {
             var slider = _dbContext.Sliders.FirstOrDefault();
             var sliderImages = _dbContext.SliderImages.ToList();
+            var services = _dbContext.Services.ToList();
+            var homeAbout = _dbContext.HomeAbout.FirstOrDefault();
 
             var homeViewModel = new HomeViewModel()
             {
                 Slider = slider,
-                SliderImages = sliderImages
+                SliderImages = sliderImages,
+                Services = services,
+                HomeAbout = homeAbout
             };
 
             return View(homeViewModel);
