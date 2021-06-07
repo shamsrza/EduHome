@@ -1,7 +1,9 @@
 using EduHomeBack.DataAccessLayer;
+using EduHomeBack.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,11 @@ namespace EduHomeBack
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession((options) =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(20); // setting time for session
+            });
+           
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -39,6 +46,8 @@ namespace EduHomeBack
         {
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseSession();
+            app.UseAuthentication(); // validation
 
             app.UseEndpoints(endpoints =>
             {

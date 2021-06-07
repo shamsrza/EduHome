@@ -1,4 +1,5 @@
 ﻿using EduHomeBack.Models;
+using EduHomeBack.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,5 +24,6 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<HomeEventArea> HomeEventArea { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<HomeBlogArea> HomeBlogArea { get; set; }
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 }

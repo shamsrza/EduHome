@@ -198,7 +198,7 @@
                     </div>
                     <div class="event-content text-left">
                         <h3>@item.Date</h3>
-                        <h4><a href="event-details.html">@item.Time</a></h4>
+                        <h4><a href="event-details.html">@item.Title</a></h4>
                         <ul>
                             <li><i class="fa fa-clock-o"></i>@item.Time</li>
                             <li><i class="fa fa-map-marker"></i>@item.Location</li>
@@ -210,7 +210,7 @@
                 </div>
                 count++;
             }
-            @Html.Raw("</div>");
+            @Html.Raw("</div>")
         </div>
     </div>
 </div>
