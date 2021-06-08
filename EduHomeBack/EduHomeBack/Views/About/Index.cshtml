@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewData["Title"] = "About Index";
+    AboutViewModel aboutViewModel = Model;
+}
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper" style="margin-bottom: 100px">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>about us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+@*About Start*@
+<div class="about-area pb-155">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="about-content">
+                    <h2>@Html.Raw(aboutViewModel.HomeAbout.Title)</h2>
+                    <p>@Html.Raw(aboutViewModel.HomeAbout.Description)</p>
+                    <a class="default-btn" href="about.html">view courses</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-img">
+                    <img src="~/img/about/@aboutViewModel.HomeAbout.Image" alt="about">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*About End*@
+
+
+@*meet our teachers*@
+
+@*Testimonial Area Start*@
+<div class="testimonial-area pt-110 pb-105 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="testimonial-owl owl-theme owl-carousel">
+                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                    <div class="single-testimonial">
+                        <div class="testimonial-info">
+                            <div class="testimonial-img">
+                                <img src="~/img/testimonial/@aboutViewModel.Testimonial.Image" alt="testimonial">
+                            </div>
+                            <div class="testimonial-content">
+                                <p>@aboutViewModel.Testimonial.Description</p>
+                                <h4>@aboutViewModel.Testimonial.Fullname</h4>
+                                <h5>@aboutViewModel.Testimonial.Position</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*Testimonial Area End*@
+
+@*Notice Start*@
+<section class="notice-area two pt-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-right-wrapper mb-25 pb-25">
+                    <h3>@aboutViewModel.HomeVideoTour.Title</h3>
+                    <div class="notice-video">
+                        <div class="video-icon video-hover">
+                            <a class="video-popup" href="@aboutViewModel.HomeVideoTour.Video">
+                                <i class="zmdi zmdi-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-left-wrapper">
+                    <h3>notice board</h3>
+                    <div class="notice-left">
+                        @foreach (var item in aboutViewModel.HomeNoticeBoard)
+                        {
+                            <div class="single-notice-left mb-23 pb-20">
+                                <h4>@item.Title</h4>
+                                <p>@item.Description </p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*Notice End*@ 

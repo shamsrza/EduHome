@@ -18,6 +18,7 @@ namespace EduHomeBack.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+
             modelBuilder.Entity("EduHomeBack.Models.HomeAbout", b =>
                 {
                     b.Property<int>("Id")

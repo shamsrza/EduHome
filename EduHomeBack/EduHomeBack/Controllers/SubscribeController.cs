@@ -45,14 +45,6 @@ namespace EduHomeBack.Controllers
             }
             else
             {
-                //var newSubscriber = new Subscriber()
-                //{
-                    
-                //    Email = subscriber.Email,
-                //    Name = subscriber.Name,
-                //    Surname = subscriber.Surname
-                //};
-
                 await _dbContext.Subscribers.AddAsync(subscriber);
                 await _dbContext.SaveChangesAsync();
             }

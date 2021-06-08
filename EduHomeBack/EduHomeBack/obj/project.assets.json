@@ -7309,11 +7309,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\EduHomeBack\\EduHomeBack\\EduHomeBack.csproj",
+      "projectUniqueName": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\git_repos\\EduHome\\EduHomeBack\\EduHomeBack\\EduHomeBack.csproj",
       "projectName": "EduHomeBack",
-      "projectPath": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\EduHomeBack\\EduHomeBack\\EduHomeBack.csproj",
+      "projectPath": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\git_repos\\EduHome\\EduHomeBack\\EduHomeBack\\EduHomeBack.csproj",
       "packagesPath": "C:\\Users\\srzayeva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\EduHomeBack\\EduHomeBack\\obj\\",
+      "outputPath": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\git_repos\\EduHome\\EduHomeBack\\EduHomeBack\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\srzayeva\\AppData\\Roaming\\NuGet\\NuGet.Config",

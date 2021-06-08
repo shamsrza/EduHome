@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ReTEvND23Pasj6K3EaUL7fJE/KIU25ipQE7q7iwoRbeq56gfDbyf8Z38uEVOqw2O+KT+1xx61MdtUiX3Mjkijg==",
+  "dgSpecHash": "ZniXypus3o9+ZO9XArzuK8/b63fsR+ek0vv+lwf6oWAeJjv+hXMBkCbtpDVJb/dPEFDdkhxiA3BhK066jpEa/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\EduHomeBack\\EduHomeBack\\EduHomeBack.csproj",
+  "projectFilePath": "C:\\Users\\srzayeva\\Desktop\\ASP.NET\\git_repos\\EduHome\\EduHomeBack\\EduHomeBack\\EduHomeBack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\srzayeva\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\srzayeva\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",

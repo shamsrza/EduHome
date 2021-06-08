@@ -34,7 +34,6 @@ namespace EduHomeBack.Controllers
             var testimonial = _dbContext.Testimonials.FirstOrDefault();
             var homeBlogArea = _dbContext.HomeBlogArea.ToList();
 
-
             var homeViewModel = new HomeViewModel()
             {
                 Slider = slider,
@@ -46,7 +45,7 @@ namespace EduHomeBack.Controllers
                 HomeVideoTour = homeVideoTour,
                 HomeEventArea = homeEventArea,
                 Testimonial = testimonial,
-                HomeBlogArea = homeBlogArea,
+                HomeBlogArea = homeBlogArea
             };
 
             return View(homeViewModel);
