@@ -23,15 +23,23 @@ namespace EduHomeBack.Controllers
             var homeAbout = _dbContext.HomeAbout.FirstOrDefault();
             var homeNoticeBoard = _dbContext.HomeNoticeBoard.ToList();
             var homeVideoTour = _dbContext.HomeVideoTour.FirstOrDefault();
-            var testimonial = _dbContext.Testimonials.FirstOrDefault();
+            var testimonial = _dbContext.Testimonials.ToList();
+            var teachers = _dbContext.Teachers.Take(4).ToList();
+            var positions = _dbContext.Positions.ToList();
+            var teacherPositions = _dbContext.TeacherPositions.ToList();
+            var socialNetworks = _dbContext.SocialNetworks.ToList();
 
             var aboutViewModel = new AboutViewModel()
-            {
-                
+            {               
                 HomeAbout = homeAbout,
                 HomeNoticeBoard = homeNoticeBoard,
                 HomeVideoTour = homeVideoTour,
-                Testimonial = testimonial
+                Testimonial = testimonial,
+                TeacherPositions = teacherPositions,
+                Teachers = teachers,
+                Positions = positions,
+                SocialNetworks= socialNetworks
+
             };
 
             return View(aboutViewModel);

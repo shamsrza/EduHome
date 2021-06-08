@@ -16,7 +16,7 @@ namespace EduHomeBack.ViewModels
         public HomeVideoTour HomeVideoTour { get; set; }
         public List<HomeNoticeBoard> HomeNoticeBoard { get; set; }
         public List<HomeEventArea> HomeEventArea { get; set; }
-        public Testimonial Testimonial { get; set; }
+        public List<Testimonial> Testimonial { get; set; }
         public List<HomeBlogArea> HomeBlogArea { get; set; }
     }
 }

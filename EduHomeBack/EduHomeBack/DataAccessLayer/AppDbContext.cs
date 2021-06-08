@@ -26,5 +26,10 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<HomeBlogArea> HomeBlogArea { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Banner> Banner { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<TeacherPosition> TeacherPositions { get; set; }
+        public DbSet<SocialNetwork> SocialNetworks { get; set; }
+        public DbSet<TeacherSocialNetwork> TeacherSocialNetworks { get; set; }
     }
 }

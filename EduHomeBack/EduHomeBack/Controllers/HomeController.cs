@@ -31,7 +31,7 @@ namespace EduHomeBack.Controllers
             var homeNoticeBoard = _dbContext.HomeNoticeBoard.ToList();
             var homeVideoTour = _dbContext.HomeVideoTour.FirstOrDefault();
             var homeEventArea = _dbContext.HomeEventArea.ToList();
-            var testimonial = _dbContext.Testimonials.FirstOrDefault();
+            var testimonial = _dbContext.Testimonials.ToList();
             var homeBlogArea = _dbContext.HomeBlogArea.ToList();
 
             var homeViewModel = new HomeViewModel()

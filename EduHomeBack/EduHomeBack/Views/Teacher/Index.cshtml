@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Teacher Index";
+    TeacherViewModel teacherViewModel = Model;
+}
+
+
+<!-- Teacher Start -->
+<div class="teacher-area pt-150 pb-105">
+    <div class="container">
+        @*seach part*@
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
+                </div>
+                <div class="course-form">
+                    <form id="search" action="#">
+                        <input type="search" placeholder="Search..." name="search" />
+                        <button type="submit">search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in teacherViewModel.Teachers)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="single-teacher mb-45">
+                        <div class="single-teacher-img">
+                            <a href="teacher-details.html"><img src="img/teacher/@item.Image" alt="teacher"></a>
+                        </div>
+                        <div class="single-teacher-content text-center">
+                            <h2><a href="teacher-details.html">@item.Name</a></h2>
+                            <h4>@item.Position</h4>
+                            @foreach (var social in teacherViewModel.SocialNetworks)
+                            {
+                                <ul>
+                                    <li><a href="@social.Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="@social.Pinterest"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                    <li><a href="@social.Vimeo"><i class="zmdi zmdi-vimeo"></i></a></li>
+                                    <li><a href="@social.Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- Teacher End -->

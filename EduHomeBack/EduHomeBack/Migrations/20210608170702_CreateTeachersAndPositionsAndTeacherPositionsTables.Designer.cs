@@ -3,41 +3,22 @@ using EduHomeBack.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduHomeBack.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210608170702_CreateTeachersAndPositionsAndTeacherPositionsTables")]
+    partial class CreateTeachersAndPositionsAndTeacherPositionsTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("EduHomeBack.Models.Banner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Key")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Banner");
-                });
 
             modelBuilder.Entity("EduHomeBack.Models.HomeAbout", b =>
                 {
@@ -238,30 +219,6 @@ namespace EduHomeBack.Migrations
                     b.ToTable("SliderImages");
                 });
 
-            modelBuilder.Entity("EduHomeBack.Models.SocialNetwork", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pinterest")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Twitter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vimeo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SocialNetworks");
-                });
-
             modelBuilder.Entity("EduHomeBack.Models.Subscriber", b =>
                 {
                     b.Property<int>("Id")
@@ -380,28 +337,6 @@ namespace EduHomeBack.Migrations
                     b.ToTable("TeacherPositions");
                 });
 
-            modelBuilder.Entity("EduHomeBack.Models.TeacherSocialNetwork", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("SocialNetworkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SocialNetworkId");
-
-                    b.HasIndex("TeacherId");
-
-                    b.ToTable("TeacherSocialNetworks");
-                });
-
             modelBuilder.Entity("EduHomeBack.Models.Testimonial", b =>
                 {
                     b.Property<int>("Id")
@@ -445,40 +380,14 @@ namespace EduHomeBack.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("EduHomeBack.Models.TeacherSocialNetwork", b =>
-                {
-                    b.HasOne("EduHomeBack.Models.SocialNetwork", "SocialNetwork")
-                        .WithMany("TeacherSocialNetworks")
-                        .HasForeignKey("SocialNetworkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EduHomeBack.Models.Teacher", "Teacher")
-                        .WithMany("TeacherSocialNetworks")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SocialNetwork");
-
-                    b.Navigation("Teacher");
-                });
-
             modelBuilder.Entity("EduHomeBack.Models.Position", b =>
                 {
                     b.Navigation("TeacherPositions");
                 });
 
-            modelBuilder.Entity("EduHomeBack.Models.SocialNetwork", b =>
-                {
-                    b.Navigation("TeacherSocialNetworks");
-                });
-
             modelBuilder.Entity("EduHomeBack.Models.Teacher", b =>
                 {
                     b.Navigation("TeacherPositions");
-
-                    b.Navigation("TeacherSocialNetworks");
                 });
 #pragma warning restore 612, 618
         }
