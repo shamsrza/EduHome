@@ -148,5 +148,6 @@ C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Subscribe\Index.cshtml.g.cs
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\EduHomeBack.csproj.AssemblyReference.cache
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\About\Index.cshtml.g.cs
-C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\Components\Banner\Defaultcshtml.cshtml.g.cs
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Teacher\Index.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\Components\Banner\Default.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\Components\Teacher\Default.cshtml.g.cs

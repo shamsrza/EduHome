@@ -19,21 +19,10 @@ namespace EduHomeBack.Controllers
         }
         public IActionResult Index()
         {
-            var teachers = _dbContext.Teachers.ToList();
-            var positions = _dbContext.Positions.ToList();
-            var teacherPositions = _dbContext.TeacherPositions.ToList();
-            var socialNetworks = _dbContext.SocialNetworks.ToList();
+            var teachers = _dbContext.Teachers.Include(x => x.TeacherPositions).ThenInclude(x => x.Position)
+                                              .Include(x => x.SocialNetworks).ToList();
 
-            var teacherViewModel = new TeacherViewModel()
-            {
-                TeacherPositions = teacherPositions,
-                Teachers = teachers,
-                Positions = positions,
-                SocialNetworks = socialNetworks
-
-            };
-
-            return View(teacherViewModel);
+            return View(teachers);
         }
     }
 }

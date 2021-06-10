@@ -11,13 +11,14 @@ namespace EduHomeBack.ViewModels
         public HomeAbout HomeAbout { get; set; }
         public HomeVideoTour HomeVideoTour { get; set; }
         public List<HomeNoticeBoard> HomeNoticeBoard { get; set; }
-        public List<Teacher> Teachers { get; set; }
-        public List<Position> Positions { get; set; }
-        public List<TeacherPosition> TeacherPositions { get; set; }
         public List<Testimonial> Testimonial { get; set; }
-        public List<SocialNetwork> SocialNetworks { get; set; }
-        public List<TeacherSocialNetwork> TeacherSocialNetworks { get; set; }
 
-        //public string Key { get; set; }
+
+
+        //public List<Teacher> Teachers { get; set; }
+        //public List<Position> Positions { get; set; }
+        //public List<TeacherPosition> TeacherPositions { get; set; }
+        //public List<SocialNetwork> SocialNetworks { get; set; }
+
     }
 }

@@ -12,6 +12,5 @@ namespace EduHomeBack.ViewModels
         public List<Position> Positions { get; set; }
         public List<TeacherPosition> TeacherPositions { get; set; }
         public List<SocialNetwork> SocialNetworks { get; set; }
-        public List<TeacherSocialNetwork> TeacherSocialNetworks { get; set; }
     }
 }

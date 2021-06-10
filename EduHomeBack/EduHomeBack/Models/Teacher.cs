@@ -13,8 +13,7 @@ namespace EduHomeBack.Models
         public string Image { get; set; }
         [Required]
         public string Name{ get; set; }
-        [Required]
-        public string Position{ get; set; }
+
         [Required]
         public string AboutMe{ get; set; }
 
@@ -36,7 +35,10 @@ namespace EduHomeBack.Models
         public int Design { get; set; }
         public int Innovation { get; set; }
         public int Communication { get; set; }
+
+        public ICollection<SocialNetwork> SocialNetworks { get; set; }
         public ICollection<TeacherPosition> TeacherPositions { get; set; }
-        public ICollection<TeacherSocialNetwork> TeacherSocialNetworks { get; set; }
+        public ICollection<TeacherCourse> TeacherCourses { get; set; }
+
     }
 }
