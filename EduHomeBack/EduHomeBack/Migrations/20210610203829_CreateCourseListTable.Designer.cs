@@ -4,14 +4,16 @@ using EduHomeBack.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduHomeBack.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210610203829_CreateCourseListTable")]
+    partial class CreateCourseListTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +52,8 @@ namespace EduHomeBack.Migrations
                     b.Property<string>("AboutCourse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Assesments")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Assesments")
+                        .HasColumnType("int");
 
                     b.Property<string>("Certification")
                         .HasColumnType("nvarchar(max)");
@@ -84,9 +86,6 @@ namespace EduHomeBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SkillLevel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Start")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Starts")

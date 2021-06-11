@@ -29,7 +29,24 @@
 @*About End*@
 
 
-@await Component.InvokeAsync("Teacher", 4)
+<!-- Teacher Start -->
+<div class="teacher-area pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title text-center">
+                    <img src="img/icon/section.png" alt="title">
+                    <h2>meet our teachers</h2>
+                </div>
+            </div>
+        </div>
+        @await Component.InvokeAsync("Teacher", 4)
+    </div>
+</div>
+<!-- Teacher End -->
+
+
+
 
 <!-- Testimonial Area Start -->
 <div class="testimonial-area pt-110 pb-105 text-center">
@@ -58,7 +75,6 @@
     </div>
 </div>
 <!-- Testimonial Area End -->
-
 @*Notice Start*@
 <section class="notice-area two pt-140">
     <div class="container">

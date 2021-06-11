@@ -30,5 +30,7 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<Position> Positions { get; set; }
         public DbSet<TeacherPosition> TeacherPositions { get; set; }
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
+        public DbSet<Course> Course { get; set; }
+        public DbSet<CourseList> CourseList { get; set; }
     }
 }
