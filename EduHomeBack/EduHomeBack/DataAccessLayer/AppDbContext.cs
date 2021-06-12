@@ -32,5 +32,7 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
         public DbSet<Course> Course { get; set; }
         public DbSet<CourseList> CourseList { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventList> EventList { get; set; }
     }
 }

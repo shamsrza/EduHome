@@ -109,7 +109,7 @@ label {
 .mark, mark {
     background: #4fc1f0 none repeat scroll 0 0;
     color: #ffffff;
-}	font-weight: 600;
+    font-weight: 600;
 }
 .f-left {float: left}
 .f-right {float: right}
@@ -1177,7 +1177,8 @@ textarea {
 .notice-right{
     padding: 40px 50px 50px;
 }
-.notice-left h3, .notice-left-wrapper h3, .notice-right-wrapper h3{
+.notice-left h3, .notice-left-wrapper h3, .notice-right-wrapper h3
+{
     font-family: 'Open Sans', sans-serif;
     font-size: 800;
     color: #2c2b5e;
