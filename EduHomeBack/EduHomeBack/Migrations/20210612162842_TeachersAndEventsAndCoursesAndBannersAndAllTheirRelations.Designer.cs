@@ -4,14 +4,16 @@ using EduHomeBack.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduHomeBack.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210612162842_TeachersAndEventsAndCoursesAndBannersAndAllTheirRelations")]
+    partial class TeachersAndEventsAndCoursesAndBannersAndAllTheirRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,81 +40,6 @@ namespace EduHomeBack.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Banners");
-                });
-
-            modelBuilder.Entity("EduHomeBack.Models.Blog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BlogListId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Comment")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Desciption")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("PublishDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogListId")
-                        .IsUnique();
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("EduHomeBack.Models.BlogList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Comment")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("PublishDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BlogList");
                 });
 
             modelBuilder.Entity("EduHomeBack.Models.Course", b =>
@@ -696,17 +623,6 @@ namespace EduHomeBack.Migrations
                     b.ToTable("Testimonials");
                 });
 
-            modelBuilder.Entity("EduHomeBack.Models.Blog", b =>
-                {
-                    b.HasOne("EduHomeBack.Models.BlogList", "BlogList")
-                        .WithOne("Blog")
-                        .HasForeignKey("EduHomeBack.Models.Blog", "BlogListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlogList");
-                });
-
             modelBuilder.Entity("EduHomeBack.Models.Course", b =>
                 {
                     b.HasOne("EduHomeBack.Models.CourseList", "CourseList")
@@ -787,11 +703,6 @@ namespace EduHomeBack.Migrations
                     b.Navigation("Position");
 
                     b.Navigation("TeacherList");
-                });
-
-            modelBuilder.Entity("EduHomeBack.Models.BlogList", b =>
-                {
-                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("EduHomeBack.Models.CourseList", b =>

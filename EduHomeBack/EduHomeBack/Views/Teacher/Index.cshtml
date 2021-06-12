@@ -1,7 +1,8 @@
 ﻿
+
 @{
     ViewData["Title"] = "Teacher Index";
-    List<Teacher> teachers = Model;
+    List<TeacherList> teacherList = Model;
 }
 
 @await Component.InvokeAsync("Banner", "OurTeachers")
@@ -26,7 +27,7 @@
         <!-- SearchBar End -->
 
         @await Component.InvokeAsync("Teacher", 12)
-      
+
     </div>
 </div>
 <!-- Teacher End -->

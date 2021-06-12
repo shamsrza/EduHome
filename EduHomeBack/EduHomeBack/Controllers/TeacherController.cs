@@ -19,10 +19,24 @@ namespace EduHomeBack.Controllers
         }
         public IActionResult Index()
         {
-            var teachers = _dbContext.Teachers.Include(x => x.TeacherPositions).ThenInclude(x => x.Position)
+            var teachers = _dbContext.TeacherList.Include(x => x.TeacherPositions).ThenInclude(x => x.Position)
                                               .Include(x => x.SocialNetworks).ToList();
-
             return View(teachers);
         }
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var teacherDetail = await _dbContext.Teachers.Include(x => x.TeacherList).ThenInclude(x => x.SocialNetworks)
+                .Include(x => x.TeacherList).ThenInclude(x => x.TeacherPositions).ThenInclude(x => x.Position).FirstOrDefaultAsync(x => x.TeacherListId == id);
+
+            if (teacherDetail == null)
+                return NotFound();
+
+            return View(teacherDetail);
+        }
+
     }
 }

@@ -19,7 +19,7 @@ namespace EduHomeBack.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(string key)
         {
-            var banner = await _dbContext.Banner.FirstOrDefaultAsync(x => x.Key == key);
+            var banner = await _dbContext.Banners.FirstOrDefaultAsync(x => x.Key == key);
 
             return View(banner);
         }

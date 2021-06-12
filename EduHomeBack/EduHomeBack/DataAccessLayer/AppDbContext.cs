@@ -25,16 +25,19 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<HomeBlogArea> HomeBlogArea { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
-        public DbSet<Banner> Banner { get; set; }
+        public DbSet<Banner> Banners { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<TeacherList> TeacherList { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<TeacherPosition> TeacherPositions { get; set; }
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
-        public DbSet<Course> Course { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public DbSet<CourseList> CourseList { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventList> EventList { get; set; }
         public DbSet<Speaker> Speakers { get; set; }
         public DbSet<EventSpeaker> EventSpeakers { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogList> BlogList { get; set; }
     }
 }

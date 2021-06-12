@@ -1,4 +1,5 @@
 ﻿using EduHomeBack.DataAccessLayer;
+using EduHomeBack.Models;
 using EduHomeBack.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,24 +26,19 @@ namespace EduHomeBack.Controllers
             return View(events);
         }
 
-        public async Task<IActionResult> Detail(int? Id)
+        public async Task<IActionResult> Detail(int? id)
         {
-            if (Id == null)
+            if (id == null)
                 return NotFound();
 
-            var eventDetail = await _dbContext.Events.Include(x => x.EventList).Include(x => x.EventSpeakers).ThenInclude(x => x.Speaker).FirstOrDefaultAsync(x => x.EventListId == Id);
+            Event eventDetail = await _dbContext.Events.Include(x => x.EventList).Include(x => x.EventSpeakers).ThenInclude(x => x.Speaker).FirstOrDefaultAsync(x => x.EventListId == id);
             if (eventDetail == null)
                 return NotFound();
-
-            var eventViewModel = new EventViewModel
-            {
-                Event = eventDetail,
-            };
 
             if (eventDetail == null)
                 return NotFound();
 
-            return View(eventViewModel);
+            return View(eventDetail);
         }
 
     }

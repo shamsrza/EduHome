@@ -15,8 +15,7 @@ namespace EduHomeBack.Models
         public string AboutCourse { get; set; }
         public string HowToApply { get; set; }
         public string Certification { get; set; }
-        public DateTime Starts { get; set; } /*= DateTime.Now.ToString("dd MMMM, YYYY");*/
-        public string Start { get; set; } = DateTime.UtcNow.ToString("dd MMMM, YYYY");
+        public DateTime Starts { get; set; }
         public string Duration { get; set; }
         public string ClassDuration { get; set; }
         public string SkillLevel { get; set; }
@@ -27,8 +26,7 @@ namespace EduHomeBack.Models
 
         [ForeignKey("CourseList")]
         public int CourseListId { get; set; }
-        public CourseList CourseList { get; set; }
-        
+        public CourseList CourseList { get; set; }     
 
     }
 }

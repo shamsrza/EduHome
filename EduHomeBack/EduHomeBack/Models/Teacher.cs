@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,9 +37,12 @@ namespace EduHomeBack.Models
         public int Innovation { get; set; }
         public int Communication { get; set; }
 
-        public ICollection<SocialNetwork> SocialNetworks { get; set; }
-        public ICollection<TeacherPosition> TeacherPositions { get; set; }
-        public ICollection<TeacherCourse> TeacherCourses { get; set; }
+        [ForeignKey("TeacherList")]
+        public int TeacherListId { get; set; }
+        public TeacherList TeacherList { get; set; }
+        
+        //public ICollection<SocialNetwork> SocialNetworks { get; set; }
+        //public ICollection<TeacherPosition> TeacherPositions { get; set; }
 
     }
 }

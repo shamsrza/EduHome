@@ -19,8 +19,8 @@ namespace EduHomeBack.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int count)
         {
-            var teachers = await _dbContext.Teachers.Include(x => x.TeacherPositions).ThenInclude(x => x.Position)
-                                               .Include(x => x.SocialNetworks).Take(count).ToListAsync();
+            var teachers = await _dbContext.TeacherList.Include(x => x.TeacherPositions).ThenInclude(x => x.Position)
+                                              .Include(x => x.SocialNetworks).ToListAsync();
 
             return View(teachers);
         }

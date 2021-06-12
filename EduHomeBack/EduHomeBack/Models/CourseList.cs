@@ -15,6 +15,5 @@ namespace EduHomeBack.Models
         public string Description { get; set; }
 
         public Course Couse { get; set; }
-        public ICollection<TeacherCourse> TeacherCourses { get; set; }
     }
 }
