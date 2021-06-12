@@ -1,7 +1,6 @@
-﻿
+﻿@model EventViewModel
 @{
     ViewData["Title"] = "Detail";
-    Event eventModel = Model;
 }
 
 @await Component.InvokeAsync("Banner", "EventDetails")
@@ -13,39 +12,34 @@
             <div class="col-md-8">
                 <div class="event-details">
                     <div class="event-details-img">
-                        <img src="~/img/event/@eventModel.Image" alt="event-details">
+                        <img src="~/img/event/@Model.Event.EventList.Image" style="width: 100%" alt="event-details">
                         <div class="event-date">
-                            <h3>@eventModel.TimeStart.ToString("dd MMM")</h3>
+                            <h3>@Model.Event.EventList.TimeStart.ToString("dd") <span>@Model.Event.EventList.TimeStart.ToString("MMM")</span></h3>
                         </div>
                     </div>
                     <div class="event-details-content">
-                        <h2>@eventModel.Name</h2>
+                        <h2>@Model.Event.EventList.Name</h2>
                         <ul>
-                            <li><span>time:</span> @eventModel.TimeStart.ToString("h:mm tt") - @eventModel.TimeEnd.ToString("h:mm tt")</li>
-                            <li><span>venue : </span>@eventModel.VenuePlace @eventModel.VenueCity</li>
+                            <li><span>time:</span> @Model.Event.EventList.TimeStart.ToString("h:mm tt") - @Model.Event.EventList.TimeEnd.ToString("h:mm tt")</li>
+                            <li><span>venue : </span>@Model.Event.VenuePlace @Model.Event.EventList.VenueCity</li>
                         </ul>
-                       @Html.Raw(eventModel.Description)
+                        @Html.Raw(Model.Event.Description)
 
                         <div class="speakers-area fix">
                             <h4>speakers</h4>
-                            <div class="single-speaker">
-                                <div class="speaker-img">
-                                    <img src="~/img/event/speaker1.jpg" alt="speaker">
+                            @foreach (var speaker in Model.Event.EventSpeakers)
+                            {
+                                <div class="single-speaker">
+                                    <div class="speaker-img" style="height: 80px; width: 90px">
+                                        <img src="~/img/event/@speaker.Speaker.Image" alt="speaker" >
+                                    </div>
+                                    <div class="speaker-name">
+                                        <h5>@speaker.Speaker.Fullname</h5>
+                                        <p>@speaker.Speaker.Position, @speaker.Speaker.Company </p>
+                                    </div>
                                 </div>
-                                <div class="speaker-name">
-                                    <h5>Anthony Smith</h5>
-                                    <p>CEO, Hastech </p>
-                                </div>
-                            </div>
-                            <div class="single-speaker">
-                                <div class="speaker-img">
-                                    <img src="~/img/event/speaker2.jpg" alt="speaker">
-                                </div>
-                                <div class="speaker-name">
-                                    <h5>Lucy Rose</h5>
-                                    <p>Developer, STD </p>
-                                </div>
-                            </div>
+                            }
+
                         </div>
                     </div>
                     <div class="reply-area">
@@ -77,16 +71,16 @@
             <div class="col-md-4">
                 <div class="blog-sidebar right">
                     @*<div class="single-blog-widget mb-50">
-                        <h3>search</h3>
-                        <div class="blog-search">
-                            <form id="search" action="#">
-                                <input type="search" placeholder="Search..." name="search" />
-                                <button type="submit">
-                                    <span><i class="fa fa-search"></i></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>*@
+                            <h3>search</h3>
+                            <div class="blog-search">
+                                <form id="search" action="#">
+                                    <input type="search" placeholder="Search..." name="search" />
+                                    <button type="submit">
+                                        <span><i class="fa fa-search"></i></span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>*@
                     <div class="single-blog-widget mb-50">
                         <h3>categories</h3>
                         <ul>
@@ -150,16 +144,16 @@
                         </div>
                     </div>
                     @*<div class="single-blog-widget">
-                        <h3>tags</h3>
-                        <div class="single-tag">
-                            <a href="blog-details.html" class="mr-10 mb-10">course</a>
-                            <a href="blog-details.html" class="mr-10 mb-10">education</a>
-                            <a href="blog-details.html" class="mb-10">teachers</a>
-                            <a href="blog-details.html" class="mr-10">learning</a>
-                            <a href="blog-details.html" class="mr-10">university</a>
-                            <a href="blog-details.html">events</a>
-                        </div>
-                    </div>*@
+                            <h3>tags</h3>
+                            <div class="single-tag">
+                                <a href="blog-details.html" class="mr-10 mb-10">course</a>
+                                <a href="blog-details.html" class="mr-10 mb-10">education</a>
+                                <a href="blog-details.html" class="mb-10">teachers</a>
+                                <a href="blog-details.html" class="mr-10">learning</a>
+                                <a href="blog-details.html" class="mr-10">university</a>
+                                <a href="blog-details.html">events</a>
+                            </div>
+                        </div>*@
                 </div>
             </div>
         </div>

@@ -34,5 +34,7 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<CourseList> CourseList { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventList> EventList { get; set; }
+        public DbSet<Speaker> Speakers { get; set; }
+        public DbSet<EventSpeaker> EventSpeakers { get; set; }
     }
 }

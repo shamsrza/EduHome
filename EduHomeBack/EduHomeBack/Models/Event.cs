@@ -20,5 +20,7 @@ namespace EduHomeBack.Models
         [ForeignKey("EventList")]
         public int EventListId { get; set; }
         public EventList EventList { get; set; }
+
+        public ICollection <EventSpeaker> EventSpeakers { get; set; }
     }
 }
