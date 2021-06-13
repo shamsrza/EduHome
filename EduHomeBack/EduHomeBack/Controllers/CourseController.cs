@@ -1,5 +1,6 @@
 ﻿using EduHomeBack.DataAccessLayer;
 using EduHomeBack.Models;
+using EduHomeBack.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,11 +18,11 @@ namespace EduHomeBack.Controllers
         {
             _dbContext = dbContext;
         }
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(/*int page = 1*/)
         {
-            ViewBag.PageCount = Decimal.Ceiling(_dbContext.Courses.Count() / 3 );
-            ViewBag.Page = page;
-            var courses = await _dbContext.CourseList.OrderByDescending(x => x.Id).Skip((page-1)*3).Take(3).ToListAsync();
+            //ViewBag.PageCount = Decimal.Ceiling(_dbContext.Courses.Count() / 3 );
+            //ViewBag.Page = page;
+            var courses = await _dbContext.CourseList/*.OrderByDescending(x => x.Id).Skip((page - 1) * 3).Take(3)*/.ToListAsync();
 
             return View(courses);
         }
@@ -35,7 +36,23 @@ namespace EduHomeBack.Controllers
             if (courseDetail == null)
                 return NotFound();
 
-            return View(courseDetail);
+            var courseViewModel = new CourseViewModel
+            {
+                Course = courseDetail,
+                BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false).OrderByDescending(x => x.PublishDate).Take(3).ToList()
+            };
+            return View(courseViewModel);
+        }
+
+        public IActionResult Search(string search)
+        {
+            if (search == null)
+                return NotFound();
+
+            var courses = _dbContext.CourseList.Where(x => x.Name.Contains(search)).Take(5).OrderByDescending(x => x.Couse.Starts).ToList();
+
+            return PartialView("_CourseSearchPartial", courses);
+
         }
 
     }

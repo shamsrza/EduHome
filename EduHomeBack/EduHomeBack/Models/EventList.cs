@@ -13,6 +13,7 @@ namespace EduHomeBack.Models
         public DateTime TimeStart { get; set; }
         public DateTime TimeEnd { get; set; }
         public string VenueCity { get; set; }
+        //public bool IsDeleted { get; set; }
         public Event Event { get; set; }
     }
 }

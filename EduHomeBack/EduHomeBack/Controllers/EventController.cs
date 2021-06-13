@@ -31,14 +31,30 @@ namespace EduHomeBack.Controllers
             if (id == null)
                 return NotFound();
 
-            Event eventDetail = await _dbContext.Events.Include(x => x.EventList).Include(x => x.EventSpeakers).ThenInclude(x => x.Speaker).FirstOrDefaultAsync(x => x.EventListId == id);
+            var eventDetail = await _dbContext.Events.Include(x => x.EventList).Include(x => x.EventSpeakers).ThenInclude(x => x.Speaker).FirstOrDefaultAsync(x => x.EventListId == id);
             if (eventDetail == null)
                 return NotFound();
 
             if (eventDetail == null)
                 return NotFound();
 
-            return View(eventDetail);
+            var eventViewModel = new EventViewModel
+            {
+                Event = eventDetail,
+                BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false).OrderByDescending(x => x.PublishDate).Take(3).ToList()
+            };
+            return View(eventViewModel);
+        }
+
+        public IActionResult Search(string search)
+        {
+            if (search == null)
+                return NotFound();
+
+            var events = _dbContext.EventList.Where(x => x.Name.Contains(search)).Take(5).OrderByDescending(x => x.Event.TimeStart).ToList();
+
+            return PartialView("_EventSearchPartial", events);
+
         }
 
     }

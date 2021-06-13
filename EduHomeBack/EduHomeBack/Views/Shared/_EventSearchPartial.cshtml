@@ -1,0 +1,36 @@
+﻿
+@model List<EventList>
+
+
+<div class="container" style="width: 80%; align-items: center">
+    <div class="row" style="display: flex; flex-direction: row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-event mb-60">
+                    <div class="event-img">
+                        <a asp-action="Detail" asp-route-id="@item.Id">
+                            <img src="~/img/event/@item.Image" alt="event">
+                            <div class="course-hover">
+                                <i class="fa fa-link"></i>
+                            </div>
+                        </a>
+                        <div class="event-date">
+                            <h3>@item.TimeStart.ToString("dd")<span>@item.TimeStart.ToString("MMM")</span></h3>
+                        </div>
+                    </div>
+                    <div class="event-content text-left">
+                        <h4><a asp-action="Detail" asp-route-id="@item.Id">@item.Name</a></h4>
+                        <ul>
+                            <li><span>time:</span> @item.TimeStart.ToString("h:mm tt") - @item.TimeEnd.ToString("h:mm tt")</li>
+                            <li><span>venue:</span> @item.VenueCity</li>
+                        </ul>
+                        <div class="event-content-right">
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="default-btn">join now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -51,5 +51,20 @@ namespace EduHomeBack.Controllers
             return View(homeViewModel);
         }
 
+        public IActionResult Search(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+                return NotFound();
+
+            var searchViewModel = new SearchViewModel
+            {
+                TeacherList = _dbContext.TeacherList.Where(x => x.IsDeleted == false && x.Fullname.ToLower().Contains(search.ToLower())).Take(4).ToList(),
+                EventList = _dbContext.EventList.Where(x => /*x.IsDeleted == false &&*/ x.Name.ToLower().Contains(search.ToLower())).Take(4).ToList(),
+                CourseList = _dbContext.CourseList.Where(x => /*x.IsDeleted == false &&*/ x.Name.ToLower().Contains(search.ToLower())).Take(4).ToList(),
+                BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false && x.Title.ToLower().Contains(search.ToLower())).Take(4).ToList(),
+            };
+            return PartialView("_GlobalSearchPartial", searchViewModel);
+        }
+
     }
 }

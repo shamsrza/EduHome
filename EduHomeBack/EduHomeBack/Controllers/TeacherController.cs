@@ -38,5 +38,17 @@ namespace EduHomeBack.Controllers
             return View(teacherDetail);
         }
 
+        public IActionResult Search(string search)
+        {
+            if (search == null)
+                return NotFound();
+
+            var teachers = _dbContext.TeacherList.Include(x => x.TeacherPositions).ThenInclude(x => x.Position)
+                                              .Include(x => x.SocialNetworks).Where(x => x.Fullname.Contains(search)).OrderByDescending(x => x.Id).ToList();
+
+            return PartialView("_TeacherSearchPartial", teachers);
+
+        }
+
     }
 }

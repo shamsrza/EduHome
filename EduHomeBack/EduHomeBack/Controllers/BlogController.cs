@@ -21,7 +21,7 @@ namespace EduHomeBack.Controllers
         {
             ViewBag.PageCount = Decimal.Ceiling((decimal)_dbContext.BlogList.Count() / 9);
             ViewBag.Page = page;
-            var courses = await _dbContext.BlogList.OrderByDescending(x => x.Id).Skip((page - 1) * 9).Take(9).ToListAsync();
+            var courses = await _dbContext.BlogList.OrderByDescending(x => x.PublishDate).Skip((page - 1) * 9).Take(9).ToListAsync();
             if (ViewBag.PageCount < page)
                 return NotFound();
 
@@ -34,11 +34,28 @@ namespace EduHomeBack.Controllers
             if (id == null)
                 return NotFound();
 
-            var blogDetail = await _dbContext.Blogs.Where(x => x.IsDelete == false).Include(x => x.BlogList).FirstOrDefaultAsync(x => x.BlogListId == id);
+            var blogDetail = await _dbContext.Blogs.Where(x => x.IsDelete == false).Include(x => x.BlogList).OrderByDescending(x => x.PublishDate).FirstOrDefaultAsync(x => x.BlogListId == id);
             if (blogDetail == null)
                 return NotFound();
 
-            return View(blogDetail);
+            var blogViewModel = new BlogViewModel
+            {
+                BlogDetail = blogDetail,
+                BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false).OrderByDescending(x => x.PublishDate).Take(3).ToList()
+            };
+            return View(blogViewModel);
+
+        }
+
+        public IActionResult Search(string search)
+        {
+            if (search == null)
+                return NotFound();
+
+            var blogs = _dbContext.BlogList.Where(x => x.Title.Contains(search)).Take(5).OrderByDescending(x => x.PublishDate).ToList();
+
+            return PartialView("_BlogSearchPartial", blogs);
+
         }
     }
 }

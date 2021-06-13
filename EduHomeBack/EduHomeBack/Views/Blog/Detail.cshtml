@@ -1,7 +1,6 @@
-﻿
+﻿@model BlogViewModel
 @{
-    ViewData["Title"] = "Detail";
-    Blog blog = Model;
+    ViewData["Title"] = "Blog Detail";
 }
 
 @await Component.InvokeAsync("Banner", "BlogDetails")
@@ -13,12 +12,12 @@
             <div class="col-md-8">
                 <div class="blog-details">
                     <div class="blog-details-img">
-                        <img src="~/img/blog/@blog.BlogList.Image" alt="blog-details" style="width: 100%">
+                        <img src="~/img/blog/@Model.BlogDetail.Image" alt="blog-details" style="width: 100%">
                     </div>
                     <div class="blog-details-content">
-                        <h2>@blog.Title </h2>
-                        <h6>By @blog.Author  /  @blog.PublishDate.ToString("MMMM dd, yyyy")  /  <i class="fa fa-comments-o"></i> @blog.Comment</h6>
-                        @Html.Raw(blog.Desciption)
+                        <h2>@Model.BlogDetail.Title </h2>
+                        <h6>By @Model.BlogDetail.Author  /  @Model.BlogDetail.PublishDate.ToString("MMMM dd, yyyy")  /  <i class="fa fa-comments-o"></i> @Model.BlogDetail.Comment</h6>
+                        @Html.Raw(Model.BlogDetail.Desciption)
                     </div>
                     <div class="reply-area">
                         <h3>LEAVE A REPLY</h3>
@@ -36,7 +35,7 @@
                                 <div class="col-md-12">
                                     <p>Subject</p>
                                     <input type="text" name="subject" id="subject">
-                                    <p>Massage</p>
+                                    <p>Message</p>
                                     <textarea name="message" id="message" cols="15" rows="10"></textarea>
                                 </div>
                             </div>
@@ -72,56 +71,32 @@
                     </div>
                     <div class="single-blog-widget mb-47">
                         <div class="single-blog-banner">
-                            <a href="blog-details.html" id="blog"><img src="img/blog/blog-img.jpg" alt="blog"></a>
+                            <a href="blog-details.html" id="blog"><img src="~/img/blog/blog-img.jpg" alt="blog"></a>
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
                     <div class="single-blog-widget mb-47">
                         <h3>latest post</h3>
-                        <div class="single-post mb-30">
-                            <div class="single-post-img">
-                                <a href="blog-details.html">
-                                    <img src="img/post/post1.jpg" alt="post">
-                                    <div class="blog-hover">
-                                        <i class="fa fa-link"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="single-post-content">
-                                <h4><a href="blog-details.html">English Language Course for you</a></h4>
-                                <p>By Alex  /  June 20, 2017</p>
-                            </div>
+                        @foreach(var item in Model.BlogList)
+            {
+                    <div class="single-post mb-30">
+                        <div class="single-post-img">
+                            <a href="blog-details.html">
+                                <img src="~/img/blog/@item.Image" style="width: 100px; height: 100px" alt="post">
+                                <div class="blog-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
                         </div>
-                        <div class="single-post mb-30">
-                            <div class="single-post-img">
-                                <a href="blog-details.html">
-                                    <img src="img/post/post2.jpg" alt="post">
-                                    <div class="blog-hover">
-                                        <i class="fa fa-link"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="single-post-content">
-                                <h4><a href="blog-details.html">Advance Web Design and Develop</a></h4>
-                                <p>By Alex  /  June 20, 2017</p>
-                            </div>
-                        </div>
-                        <div class="single-post">
-                            <div class="single-post-img">
-                                <a href="blog-details.html">
-                                    <img src="img/post/post3.jpg" alt="post">
-                                    <div class="blog-hover">
-                                        <i class="fa fa-link"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="single-post-content">
-                                <h4><a href="blog-details.html">English Language Course for you</a></h4>
-                                <p>By Alex  /  June 20, 2017</p>
-                            </div>
+                        <div class="single-post-content">
+                            <h4><a asp-action="Detail" asp-route-id="@item.Id">@item.Title</a></h4>
+                            <p>By @item.Author  /  @item.PublishDate.ToString("MMMM dd, yyyy")</p>
                         </div>
                     </div>
-                    <div class="single-blog-widget">
+            }
+                        
+                    </div>
+                    @*<div class="single-blog-widget">
                         <h3>tags</h3>
                         <div class="single-tag">
                             <a href="blog-details.html" class="mr-10 mb-10">course</a>
@@ -131,7 +106,7 @@
                             <a href="blog-details.html" class="mr-10">university</a>
                             <a href="blog-details.html">events</a>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>

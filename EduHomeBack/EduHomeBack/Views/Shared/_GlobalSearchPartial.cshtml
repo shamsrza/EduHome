@@ -1,0 +1,66 @@
+﻿
+@model SearchViewModel
+
+<ul id="global-search">
+    @if (Model.BlogList != null && Model.BlogList.Count > 0)
+    {
+        <li class="global-search-title" style="list-style: none; margin: 30px 100px"><h3 style="text-transform: uppercase">Blog Searching Result</h3></li>
+
+        foreach (var blog in Model.BlogList)
+        {
+            <li class="li" style="list-style: none; margin: 30px 100px; text-transform: uppercase; display: flex; flex-direction: column">
+                <img src="~/img/blog/@blog.Image" alt="blog.Image" style="height: 200px; width: 250px "/>
+                <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">@blog.Title</a>
+            </li>
+        }
+    }
+
+
+    @if (Model.CourseList != null && Model.CourseList.Count > 0)
+    {
+        <li class="global-search-title" style="list-style: none; margin: 30px 100px"><h3 style="text-transform: uppercase">Course Searching Result</h3></li>
+
+        @foreach (var course in Model.CourseList)
+        {
+            <li class="li" style="list-style: none; margin: 30px 100px; text-transform: uppercase; display: flex; flex-direction: column ">
+                <img src="~/img/course/@course.Image" alt="course.Image" style="height: 200px; width: 250px "/>
+                <a asp-controller="Course" asp-action="Detail" asp-route-id="@course.Id" >
+                   @course.Name
+                </a>
+            </li>
+        }
+    }
+
+
+    @if (Model.EventList != null && Model.EventList.Count > 0)
+    {
+        <li class="global-search-title" style="list-style: none; margin: 30px 100px"><h3 style="text-transform: uppercase">Event Searching Result</h3></li>
+
+        @foreach (var searchEvent in Model.EventList)
+        {
+            <li class="li" style="list-style: none; margin: 30px 100px; text-transform: uppercase; display: flex; flex-direction: column ">
+                <img src="~/img/event/@searchEvent.Image" alt="event.Image" style="height: 200px; width: 250px " />
+                <a asp-controller="Event" asp-action="Detail" asp-route-id="@searchEvent.Id" >
+                    @searchEvent.Name
+                </a>
+            </li>
+        }
+    }
+
+
+    @if (Model.TeacherList != null && Model.TeacherList.Count > 0)
+    {
+       <li class="global-search-title" style="list-style: none; margin: 30px 100px"><h3 style="text-transform: uppercase">Teacher Searching Result</h3></li>
+
+        @foreach (var teacher in Model.TeacherList)
+        {
+            <li class="li" style="list-style: none; margin: 30px 100px; text-transform: uppercase; display: flex; flex-direction: column ">
+                <img src="~/img/teacher/@teacher.Image" alt="teacher.Image" style="height: 200px; width: 250px " />
+                <a asp-controller="Teacher" asp-action="Detail" asp-route-id="@teacher.Id" >
+                    @teacher.Fullname
+                </a>
+            </li>
+        }
+    }
+
+</ul>

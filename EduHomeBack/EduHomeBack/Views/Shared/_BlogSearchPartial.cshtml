@@ -1,0 +1,30 @@
+﻿
+@model List<BlogList>
+
+
+<div class="container" style="width: 80%; align-items: center">  
+    <div class="row" style="display: flex; flex-direction: row">
+        @foreach (var blog in Model)
+        {
+            <div class="col-md-4 col-sm-6 col-xs-12 mt-40" style="margin-right: 40px">
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id"><img src="~/img/blog/@blog.Image" alt="blog"></a>
+                        <div class="blog-hover">
+                            <a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id"><i class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-top">
+                            <p>@blog.Author  /  @blog.PublishDate.ToString("MMMM dd, yyyy").  /  <i class="fa fa-comments-o"></i> 4</p>
+                        </div>
+                        <div class="blog-bottom">
+                            <h2><a asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">@blog.Title </a></h2>
+                            <button asp-controller="Blog" asp-action="Detail" asp-route-id="@blog.Id">read more</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

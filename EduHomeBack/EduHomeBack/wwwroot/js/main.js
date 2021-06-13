@@ -1,6 +1,30 @@
 (function ($) {
 "use strict";  
-    
+/*------------------------------------
+	Global Search
+--------------------------------------*/
+    //Home Search
+    $(document).ready(function () {
+        let search;
+
+        $(document).on("keyup", "#search-home-input", function () {
+            search = $(this).val().trim();
+
+            $("#home-search #global-search").remove();
+
+            if (search.length > 0) {
+                $.ajax({
+                    url: '/Home/Search?search=' + search,
+                    type: "Get",
+                    success: function (res) {
+
+                        $('#home-search').append(res)
+                    }
+                });
+            }
+        })
+    })
+
 /*------------------------------------
 	Sticky Menu 
 --------------------------------------*/

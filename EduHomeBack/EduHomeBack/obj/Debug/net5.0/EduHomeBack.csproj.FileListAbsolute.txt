@@ -158,3 +158,8 @@ C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Teacher\Detail.cshtml.g.cs
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Blog\Detail.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_BlogSearchPartial.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_CourseSearchPartial.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_EventSearchPartial.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_TeacherSearchPartial.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_GlobalSearchPartial.cshtml.g.cs

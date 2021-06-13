@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace EduHomeBack.ViewModels
 {
-    public class EventViewModel
+    public class SearchViewModel
     {
+        public List<TeacherList> TeacherList { get; set; }
+        public List<CourseList> CourseList { get; set; }
+        public List<EventList> EventList { get; set; }
         public List<BlogList> BlogList { get; set; }
-        public Event Event { get; set; }
     }
 }

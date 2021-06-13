@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EduHomeBack.ViewModels
 {
-    public class EventViewModel
+    public class BlogViewModel
     {
         public List<BlogList> BlogList { get; set; }
-        public Event Event { get; set; }
+        public Blog BlogDetail { get; set; }
     }
 }
