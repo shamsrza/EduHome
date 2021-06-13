@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,10 @@ namespace EduHomeBack.Models
         public DateTime TimeStart { get; set; }
         public DateTime TimeEnd { get; set; }
         public string VenueCity { get; set; }
-        //public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public Event Event { get; set; }
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
+
     }
 }

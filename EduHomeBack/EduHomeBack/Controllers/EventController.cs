@@ -18,12 +18,18 @@ namespace EduHomeBack.Controllers
         {
             _dbContext = dbContext;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId)
         {
-            
-            var events = await _dbContext.EventList.OrderByDescending(x => x.TimeEnd.Date).Take(9).ToListAsync();
-
-            return View(events);
+            if (categoryId == null)
+            {
+                var events = await _dbContext.EventList.OrderByDescending(x => x.TimeEnd.Date).Take(9).ToListAsync();
+                return View(events);
+            }
+            else
+            {
+                var events = await _dbContext.EventList.Where(x => x.CategoryId == categoryId).ToListAsync();
+                return View(events);
+            }     
         }
 
         public async Task<IActionResult> Detail(int? id)
@@ -32,17 +38,17 @@ namespace EduHomeBack.Controllers
                 return NotFound();
 
             var eventDetail = await _dbContext.Events.Include(x => x.EventList).Include(x => x.EventSpeakers).ThenInclude(x => x.Speaker).FirstOrDefaultAsync(x => x.EventListId == id);
-            if (eventDetail == null)
-                return NotFound();
-
+            var categories = _dbContext.Categories.Where(x => x.IsDeleted == false).Include(x => x.EventLists.Where(x => x.IsDeleted == false)).ToList();
             if (eventDetail == null)
                 return NotFound();
 
             var eventViewModel = new EventViewModel
             {
+                Categories = categories,
                 Event = eventDetail,
                 BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false).OrderByDescending(x => x.PublishDate).Take(3).ToList()
             };
+
             return View(eventViewModel);
         }
 

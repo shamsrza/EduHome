@@ -18,13 +18,24 @@ namespace EduHomeBack.Controllers
         {
             _dbContext = dbContext;
         }
-        public async Task<IActionResult> Index(/*int page = 1*/)
+        public async Task<IActionResult> Index(/*int page = 1*/ int? categoryId)
         {
             //ViewBag.PageCount = Decimal.Ceiling(_dbContext.Courses.Count() / 3 );
             //ViewBag.Page = page;
-            var courses = await _dbContext.CourseList/*.OrderByDescending(x => x.Id).Skip((page - 1) * 3).Take(3)*/.ToListAsync();
+            if (categoryId == null)
+            {
+                var courses = await _dbContext.CourseList/*.OrderByDescending(x => x.Id).Skip((page - 1) * 3).Take(3)*/.ToListAsync();
 
-            return View(courses);
+                return View(courses);
+            }
+            else
+            {
+                var courses = await _dbContext.CourseList.Where(x => x.CategoryId == categoryId).ToListAsync();
+
+                return View(courses);
+            }
+            
+            
         }
 
         public async Task<IActionResult> Detail(int? id)
@@ -33,11 +44,14 @@ namespace EduHomeBack.Controllers
                 return NotFound();
 
             var courseDetail = await _dbContext.Courses.Include(x => x.CourseList).FirstOrDefaultAsync(x => x.CourseListId == id);
+            var categories = _dbContext.Categories.Where(x => x.IsDeleted == false).Include(x => x.CourseLists.Where(x => x.IsDeleted == false)).ToList();
+
             if (courseDetail == null)
                 return NotFound();
 
             var courseViewModel = new CourseViewModel
             {
+                Categories = categories,
                 Course = courseDetail,
                 BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false).OrderByDescending(x => x.PublishDate).Take(3).ToList()
             };
@@ -52,8 +66,8 @@ namespace EduHomeBack.Controllers
             var courses = _dbContext.CourseList.Where(x => x.Name.Contains(search)).Take(5).OrderByDescending(x => x.Couse.Starts).ToList();
 
             return PartialView("_CourseSearchPartial", courses);
-
         }
+
 
     }
 }

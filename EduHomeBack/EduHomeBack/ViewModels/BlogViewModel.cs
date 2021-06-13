@@ -10,5 +10,6 @@ namespace EduHomeBack.ViewModels
     {
         public List<BlogList> BlogList { get; set; }
         public Blog BlogDetail { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }
