@@ -163,3 +163,4 @@ C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_EventSearchPartial.cshtml.g.cs
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_TeacherSearchPartial.cshtml.g.cs
 C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Shared\_GlobalSearchPartial.cshtml.g.cs
+C:\Users\srzayeva\Desktop\ASP.NET\EduHomeBack\EduHomeBack\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs

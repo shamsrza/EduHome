@@ -40,5 +40,6 @@ namespace EduHomeBack.DataAccessLayer
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogList> BlogList { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
