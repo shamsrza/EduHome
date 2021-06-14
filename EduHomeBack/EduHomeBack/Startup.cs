@@ -32,7 +32,16 @@ namespace EduHomeBack
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(20); // setting time for session
             });
-           
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.User.RequireUniqueEmail = true;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                options.Lockout.AllowedForNewUsers = true;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -47,10 +56,14 @@ namespace EduHomeBack
             app.UseRouting();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseAuthentication(); // validation
+            app.UseAuthentication(); // login /logout
 
             app.UseEndpoints(endpoints =>
             {
+               endpoints.MapControllerRoute(
+                 name: "areas",
+                 pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
+             );
                 endpoints.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
             });
         }
