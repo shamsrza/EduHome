@@ -1,0 +1,105 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create new course</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Photo">Choose image</label>
+                            <input asp-for="@Model.Photo" class="form-control" accept="image/*" type="file">
+                            <span asp-validation-for="@Model.Photo" class="text-danger"></span>
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Name">Name</label>
+                            <input class="form-control" placeholder="Name">
+                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.AboutCourse">About Course</label>
+                            <textarea class="form-control" placeholder="About Course"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.HowToApply">How To Apply</label>
+                            <textarea class="form-control" placeholder="How To Apply"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Certification">Certification</label>
+                            <textarea class="form-control" placeholder="Certification"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.CourseList.Category">Category </label>
+                            <select name="Category" id="Category">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Starts"> Start date</label>
+                            <input type="date" class="form-control" placeholder="Starts">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Duration">Course Duration</label>
+                            <input class="form-control" placeholder="Duration">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.ClassDuration">Class Duration</label>
+                            <input class="form-control" placeholder="Class Duration">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.SkillLevel">Skill Level</label>
+                            <input class="form-control" placeholder="Skill Level">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Language">Language</label>
+                            <input class="form-control" placeholder="Language">
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Students">Count of Students</label>
+                            <input class="form-control" placeholder="Students">
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Assesments">Assesments</label>
+                            <input class="form-control" placeholder="Assesments">
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.CourseFee">Course Fee</label>
+                            <input class="form-control" placeholder="CourseFee">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div style="margin-right: 20px">
+        <a asp-action="Index" class="btn btn-warning">Go Back</a>
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Create</button>
+    </form>
+</div>
+
+@section Scripts
+{
+    Validation scripts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

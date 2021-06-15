@@ -1,3 +1,4 @@
+using EduHomeBack.Areas.AdminPanel.Utils;
 using EduHomeBack.DataAccessLayer;
 using EduHomeBack.Models;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,10 +20,12 @@ namespace EduHomeBack
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _environment;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             _configuration = configuration;
+            _environment = environment;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -48,6 +52,10 @@ namespace EduHomeBack
                 options.UseSqlServer(connectionString);
             });
             services.AddMvc();
+
+            //services.AddMvc().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
+            Constants.ImageFolderPath = Path.Combine(_environment.WebRootPath, "img");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +64,8 @@ namespace EduHomeBack
             app.UseRouting();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseAuthentication(); // login /logout
+            app.UseAuthentication(); // validation
+            app.UseAuthorization(); // loginsiz admin panale girmemek ucun
 
             app.UseEndpoints(endpoints =>
             {

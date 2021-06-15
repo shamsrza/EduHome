@@ -40,9 +40,5 @@ namespace EduHomeBack.Models
         [ForeignKey("TeacherList")]
         public int TeacherListId { get; set; }
         public TeacherList TeacherList { get; set; }
-        
-        //public ICollection<SocialNetwork> SocialNetworks { get; set; }
-        //public ICollection<TeacherPosition> TeacherPositions { get; set; }
-
     }
 }

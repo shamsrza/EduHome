@@ -8,6 +8,7 @@ namespace EduHomeBack.ViewModels
 {
     public class CourseViewModel
     {
+        public int Id { get; set; }
         public List<BlogList> BlogList { get; set; }
         public Course Course { get; set; }
         public List<Category> Categories { get; set; }

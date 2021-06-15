@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,5 +19,8 @@ namespace EduHomeBack.Models
         public Course Couse { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        //[NotMapped]
+        //public IFormFile Photo { get; set; }
     }
+
 }

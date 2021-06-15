@@ -1,0 +1,53 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Course Details</h4>
+                <div><img src="~/img/course/@Model.Image" alt="course"></div>
+                <div style=" margin-top: 60px">
+                    <h2 class="card-title">@Model.Name</h2>
+                    <p style="margin-bottom: 50px">@Model.Description</p>
+                </div>
+                <div style=" margin-top: 60px">
+                    <h4 class="card-title" style="text-transform: uppercase">course features</h4>
+                    <ul class="list-star">
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">STARTS: </span> @Model.Starts.ToString("dd MMM, yyyy")</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">DURATION:  </span> @Model.Duration</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">CLASS DURATION: </span> @Model.ClassDuration</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">SKILL LEVEL: </span> @Model.SkillLevel</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">STUDENTS: </span> @Model.Students</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">ASSESMENTS: </span> @Model.Assesments</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">COURSE FEE: </span> @Model.CourseFee</li>
+                    </ul>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-transform: uppercase">about course</h4>
+                <p style="margin-bottom: 50px">@Model.AboutCourse</p>
+
+                <h4 class="card-title" style="text-transform: uppercase">how to apply</h4>
+                <p style="margin-bottom: 50px">@Model.HowToApply</p>
+
+                <h4 class="card-title" style="text-transform: uppercase">certification</h4>
+                <p>@Html.Raw(Model.Certification)</p>
+
+                <h4 class="card-title" style="text-transform: uppercase; margin-top: 50px">Category</h4>
+                <p style="margin-bottom: 50px">@Model.CourseList.Category.Name</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-warning">Go Back</a>
+</div>
+

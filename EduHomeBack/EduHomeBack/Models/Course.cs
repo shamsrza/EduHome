@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -23,6 +24,10 @@ namespace EduHomeBack.Models
         public int Students { get; set; }
         public string Assesments { get; set; }
         public double CourseFee { get; set; }
+        public bool IsDeleted { get; set; }
+
+        [NotMapped]
+        public IFormFile Photo { get; set; }
 
         [ForeignKey("CourseList")]
         public int CourseListId { get; set; }

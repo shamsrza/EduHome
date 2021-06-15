@@ -1,0 +1,60 @@
+﻿
+@model CourseList
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Course Details</h4>
+                <div><img src="~/img/course/@Model.Image" alt="course"></div>
+                <div style=" margin-top: 60px">
+                    <h2 class="card-title">@Model.Name</h2>
+                    <p style="margin-bottom: 50px">@Model.Couse.Description</p>
+                </div>
+                <div style=" margin-top: 60px">
+                    <h4 class="card-title" style="text-transform: uppercase">course features</h4>
+                    <ul class="list-star">
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">STARTS: </span> @Model.Couse.Starts.ToString("dd MMM, yyyy")</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">DURATION:  </span> @Model.Couse.Duration</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">CLASS DURATION: </span> @Model.Couse.ClassDuration</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">SKILL LEVEL: </span> @Model.Couse.SkillLevel</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">STUDENTS: </span> @Model.Couse.Students</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">ASSESMENTS: </span> @Model.Couse.Assesments</li>
+                        <li style="text-transform: uppercase"><span style="font-weight: bold">COURSE FEE: </span> @Model.Couse.CourseFee</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-transform: uppercase">about course</h4>
+                <p style="margin-bottom: 50px">@Model.Couse.AboutCourse</p>
+
+                <h4 class="card-title" style="text-transform: uppercase">how to apply</h4>
+                <p style="margin-bottom: 50px">@Model.Couse.HowToApply</p>
+
+                <h4 class="card-title" style="text-transform: uppercase">certification</h4>
+                <p>@Html.Raw(Model.Couse.Certification)</p>
+
+                <h4 class="card-title" style="text-transform: uppercase; margin-top: 50px">Category</h4>
+                <p style="margin-bottom: 50px">@Model.Couse.CourseList.Category.Name</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div style="margin-right: 20px">
+    <a asp-action="Index" class="btn btn-warning">Go Back</a>
+     </div>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
+
+

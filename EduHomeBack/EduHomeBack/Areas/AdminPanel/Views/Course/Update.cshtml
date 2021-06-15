@@ -1,0 +1,110 @@
+﻿
+@model CourseViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="row" style="display: flex; flex-direction: column">
+<div> <img src="~/img/course/@Model.Course.Image" alt="course"></div>
+<div style="margin: 30px 0">
+    <form asp-action="DeleteImage">
+        <button type="submit" class="btn btn-danger mr-2">Delete Image</button>
+    </form>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Update course</h4>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Name">Change name</label>
+                            <input class="form-control" placeholder="@Model.Course.Name">
+                            <span asp-validation-for="@Model.Course.Name" class="text-danger"></span>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.AboutCourse">Change information About Course</label>
+                            <textarea class="form-control" placeholder="@Model.Course.AboutCourse"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.HowToApply">Change information How To Apply</label>
+                            <textarea class="form-control" placeholder="@Model.Course.HowToApply"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Certification">Change information about Certification</label>
+                            <textarea class="form-control" placeholder="Certification"></textarea>
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.CourseList.Category">Change Category </label>
+                            <select name="Category" id="Category">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Photo">Change image</label>
+                            <input asp-for="@Model.Course.Photo" class="form-control" accept="image/*" type="file">
+                            <span asp-validation-for="@Model.Course.Photo" class="text-danger"></span>
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Starts">Change course Start time</label>
+                            <input class="form-control" placeholder="@Model.Course.Starts">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Duration">Change course Duration</label>
+                            <input class="form-control" placeholder="@Model.Course.Duration">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.ClassDuration">Change Class Duration</label>
+                            <input class="form-control" placeholder="@Model.Course.ClassDuration">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.SkillLevel">Skill Level</label>
+                            <input class="form-control" placeholder="@Model.Course.SkillLevel">
+                        </div>
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Language">Language</label>
+                            <input class="form-control" placeholder="@Model.Course.Language">
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Students">Students</label>
+                            <input class="form-control" placeholder="@Model.Course.Students">
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.Assesments">Assesments</label>
+                            <input class="form-control" placeholder="@Model.Course.Assesments">
+                        </div>
+
+                        <div style="margin-bottom: 50px">
+                            <label asp-for="@Model.Course.CourseFee">Course Fee</label>
+                            <input class="form-control" placeholder="@Model.Course.CourseFee">
+                        </div>
+                    </div>
+                     <button type="submit" class="btn btn-primary mr-2">Update</button>
+                     <a asp-action="Index" class="btn btn-light">Cancel</a>
+     </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    Validation scripts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
