@@ -1,4 +1,5 @@
-﻿using EduHomeBack.Models;
+﻿using EduHomeBack.Areas.AdminPanel.Data;
+using EduHomeBack.Models;
 using EduHomeBack.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -87,7 +88,7 @@ namespace EduHomeBack.Controllers
 
                 return View();
             }
-
+            await _userManager.AddToRoleAsync(newUser, RoleConstants.User);
             await _signInManager.SignInAsync(newUser, true);
 
             return RedirectToAction("Index", "Home");

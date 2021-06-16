@@ -49,7 +49,10 @@ namespace EduHomeBack
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(connectionString, builder => 
+                {
+                    builder.MigrationsAssembly(nameof(EduHomeBack));
+                });
             });
             services.AddMvc();
 
@@ -59,7 +62,8 @@ namespace EduHomeBack
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+                             AppDbContext dbContext, UserManager<User> userManager)
         {
             app.UseRouting();
             app.UseStaticFiles();
@@ -75,6 +79,9 @@ namespace EduHomeBack
              );
                 endpoints.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
             });
+
+            //var dataInitializer = new DataInitializer(dbContext, userManager);
+            //dataInitializer.SeedDataAsync();
         }
     }
 }

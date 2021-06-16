@@ -1,7 +1,9 @@
-﻿using EduHomeBack.Areas.AdminPanel.Utils;
+﻿using EduHomeBack.Areas.AdminPanel.Data;
+using EduHomeBack.Areas.AdminPanel.Utils;
 using EduHomeBack.DataAccessLayer;
 using EduHomeBack.Models;
 using EduHomeBack.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,7 @@ using System.Threading.Tasks;
 namespace EduHomeBack.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
+    [Authorize(Roles = RoleConstants.AdminRole)]
     public class CourseController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -46,6 +49,7 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
         }
 
 
+        [Authorize(Roles = RoleConstants.CourseModerator)]
         public async Task<IActionResult> Update(int? id)
         {
             var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
