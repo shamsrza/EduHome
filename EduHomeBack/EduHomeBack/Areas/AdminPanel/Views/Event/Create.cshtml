@@ -1,0 +1,76 @@
+﻿
+@model EventList
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Create Event</h4>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TimeStart"></label>
+                        <input asp-for="TimeStart" class="form-control">
+                        <span asp-validation-for="TimeStart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TimeEnd"></label>
+                        <input type="time" asp-for="TimeEnd" class="form-control">
+                        <span asp-validation-for="TimeEnd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Event.VenuePlace"></label>
+                        <textarea asp-for="Event.VenuePlace" class="form-control"></textarea>
+                        <span asp-validation-for="Event.VenuePlace" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Event.VenueCity"></label>
+                        <textarea asp-for="Event.VenueCity" class="form-control"></textarea>
+                        <span asp-validation-for="Event.VenueCity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Event.Description"></label>
+                        <input asp-for="Event.Description" class="form-control">
+                        <span asp-validation-for="Event.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group " id="photoInput">
+                        <label asp-for="Event.Photo">Images</label>
+                        <input asp-for="Event.Photo" class="form-control" accept="image/*" />
+                        <span asp-validation-for="Event.Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>category</label>
+                        <select multiple class="form-control" name="spikersId" id="Category">
+
+                            @foreach (Speaker item in ViewBag.Speakers)
+                            {
+                                <option value="@item.Id">@item.Fullname</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="CategoryInput">
+                        <label>category</label>
+                        <select multiple class="form-control" name="categoriesId" id="Category">
+
+                            @foreach (Category item in ViewBag.categories)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Create</button>
+                    <a asp-action="Index" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

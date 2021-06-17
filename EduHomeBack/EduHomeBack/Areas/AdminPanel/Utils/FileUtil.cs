@@ -22,5 +22,10 @@ namespace EduHomeBack.Areas.AdminPanel.Utils
             return fileName;
 
         }
+
+        internal static Task GenerateFileAsync(object eventImageFolderPath, object photo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

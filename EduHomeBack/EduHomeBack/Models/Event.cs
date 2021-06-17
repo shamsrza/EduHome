@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,5 +23,8 @@ namespace EduHomeBack.Models
         public EventList EventList { get; set; }
 
         public ICollection <EventSpeaker> EventSpeakers { get; set; }
+
+        [NotMapped]
+        public IFormFile Photo { get; set; }
     }
 }

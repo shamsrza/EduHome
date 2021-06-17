@@ -60,6 +60,7 @@ namespace EduHomeBack
 
             Constants.ImageFolderPath = Path.Combine(_environment.WebRootPath, "img");
             Constants.CourseImagesFolderPath = Path.Combine(_environment.WebRootPath, "img", "course");
+            Constants.EventImageFolderPath = Path.Combine(_environment.WebRootPath, "img", "event");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

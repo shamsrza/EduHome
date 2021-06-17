@@ -245,6 +245,7 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
             {
                 return NotFound();
             }
+
             //var course = _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList)
             //             .ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
 
@@ -285,7 +286,6 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
                 var fileName = await FileUtil.GenerateFile(Constants.CourseImagesFolderPath, courseViewModel.Course.Photo);
 
                 courseViewModel.Course.Image = fileName;
-                
             }
 
 

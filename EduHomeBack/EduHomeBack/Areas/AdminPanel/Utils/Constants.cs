@@ -9,6 +9,7 @@ namespace EduHomeBack.Areas.AdminPanel.Utils
     {
         public static string ImageFolderPath = "";
         public static string CourseImagesFolderPath = "";
+        public static string EventImageFolderPath = "";
     }
 
 }
