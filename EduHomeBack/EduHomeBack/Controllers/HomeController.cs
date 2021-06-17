@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EduHomeBack.Controllers
@@ -64,6 +65,34 @@ namespace EduHomeBack.Controllers
                 BlogList = _dbContext.BlogList.Where(x => x.IsDeleted == false && x.Title.ToLower().Contains(search.ToLower())).Take(4).ToList(),
             };
             return PartialView("_GlobalSearchPartial", searchViewModel);
+        }
+
+        public async Task<IActionResult> Subscribe(string email)
+        {
+            if(email == null)
+            {
+                return Content("Email cannot be empty");
+            }
+
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (!match.Success)
+            {
+                return Content("Please enter a valid email address");
+            }
+            var isExist = await _dbContext.Subscribe.AnyAsync(x=> x.Email == email);
+            if (isExist)
+            {
+                return Content("You have already subscribed!");
+            }
+
+            Subscribe subscribe = new Subscribe
+            {
+                Email = email
+            };
+            await _dbContext.Subscribe.AddAsync(subscribe);
+            await _dbContext.SaveChangesAsync();
+            return Content("You subscribed!");
         }
 
     }

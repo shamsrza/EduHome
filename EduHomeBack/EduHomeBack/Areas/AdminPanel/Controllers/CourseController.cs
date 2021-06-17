@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace EduHomeBack.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    [Authorize(Roles = RoleConstants.AdminRole)]
+    //[Authorize(Roles = RoleConstants.AdminRole)]
     public class CourseController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -49,16 +49,17 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
         }
 
 
-        [Authorize(Roles = RoleConstants.CourseModerator)]
+        //[Authorize(Roles = RoleConstants.CourseModerator)]
         public async Task<IActionResult> Update(int? id)
         {
             var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
-            ViewBag.Categories = categories;
 
             if (id == null)
                 return NotFound();
 
-            var course =  _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList).ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
+            var course =  _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList)
+                          .ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
+
             if (course == null)
                 return NotFound();
 
@@ -73,34 +74,8 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteImage(int? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            var course = _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList)
-                             .ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
-            var courseImage = course.Image;
-            if (courseImage == null)
-                return NotFound();
-
-            var path = Path.Combine(Constants.ImageFolderPath, courseImage);
-            if (System.IO.File.Exists(path))
-                System.IO.File.Delete(path);
-
-            _dbContext.Remove(courseImage);
-            await _dbContext.SaveChangesAsync();
-
-            return RedirectToAction("Update", new { Id = id});
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int? id, CourseViewModel courseViewModel)
         {
-            ViewBag.Categories = _dbContext.Categories.Where(x => x.IsDeleted == false).ToList();
-            var categories = ViewBag.Categories;
 
             if (id == null)
                 return NotFound();
@@ -113,13 +88,15 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
                 return View();
             }
 
-            var course = _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList).ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
+            var course = _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList)
+                         .ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
+
             if (course == null)
                 return NotFound();
 
             var isExist = await _dbContext.Courses.Where(x => x.IsDeleted == false)
                           .AnyAsync(x => x.Name.ToLower() == courseViewModel.Course.Name.ToLower() 
-                           && x.Id != courseViewModel.Course.Id);
+                           && x.Id != courseViewModel.Id);
             if (isExist)
             {
                 ModelState.AddModelError("Name", "This course is already exist");
@@ -140,16 +117,40 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
                     return View(courseViewModel);
                 }
 
-                var fileName = await FileUtil.GenerateFile(Constants.ImageFolderPath, courseViewModel.Course.Photo);
+                //old image deleted
+                var oldImagePath = Path.Combine(Constants.CourseImagesFolderPath, course.Image);
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+
+                //new image created
+                var fileName = await FileUtil.GenerateFile(Constants.CourseImagesFolderPath, courseViewModel.Course.Photo);
 
                 courseViewModel.Course.Image = fileName;
-                courseViewModel.Course.IsDeleted = false;
-
-                await _dbContext.Courses.AddAsync(courseViewModel.Course);              
+                //courseViewModel.Course.IsDeleted = false;
             }
 
-             course = courseViewModel.Course;
-             categories = courseViewModel.Categories;
+            
+            //course.Id = courseViewModel.Course.Id;
+            course.Name = courseViewModel.Course.Name;
+            course.AboutCourse = courseViewModel.Course.AboutCourse;
+            course.HowToApply = courseViewModel.Course.HowToApply;
+            course.Certification = courseViewModel.Course.Certification;
+            course.CourseList.CategoryId = courseViewModel.SelectedCategoryId;
+            course.Image = courseViewModel.Course.Image;
+            course.Starts = courseViewModel.Course.Starts;
+            course.Duration = courseViewModel.Course.Duration;
+            course.ClassDuration = courseViewModel.Course.ClassDuration;
+            course.SkillLevel = courseViewModel.Course.SkillLevel;
+            course.Language = courseViewModel.Course.Language;
+            course.Students = courseViewModel.Course.Students;
+            course.Assesments = courseViewModel.Course.Assesments;
+            course.CourseFee = courseViewModel.Course.CourseFee;
+
+
+            //course = courseViewModel.Course;
+            //categories = courseViewModel.Categories;
 
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -164,59 +165,153 @@ namespace EduHomeBack.Areas.AdminPanel.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(Course course, int SelectedCategoryId)
+        //{
+        //    var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
+        //    ViewBag.Categories = categories;
+
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View();
+        //    }
+
+        //    var isExist = await _dbContext.Courses.Where(x => x.IsDeleted == false).AnyAsync(x => x.Name.ToLower() == course.Name.ToLower());
+        //    if (isExist)
+        //    {
+        //        ModelState.AddModelError("Name", "This course is already exist");
+        //        return View();
+        //    }
+
+        //    if(categories.All(x => x.Id != SelectedCategoryId))
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (course.Photo == null || course.Photo.Length == 0)
+        //    {
+        //        ModelState.AddModelError("Photo", "Please select photo");
+        //        return View();
+        //    }
+
+        //    if (!course.Photo.IsImage())
+        //    {
+        //        ModelState.AddModelError("Photo", "This file is not image");
+        //        return View();
+        //    }
+
+        //    if (!course.Photo.IsSizeAllowed(1024))
+        //    {
+        //        ModelState.AddModelError("Photo", "Size of image is more than 1 MB");
+        //        return View();
+        //    }
+
+        //    var fileName = await FileUtil.GenerateFile(Constants.CourseImagesFolderPath, course.Photo);
+
+        //    course.Image = fileName;
+        //    //course.IsDeleted = false;
+
+        //    var courseList = new CourseList
+        //    {
+
+        //        Name = course.Name,
+        //        Description = course.Description,
+        //        Image = course.Image,
+        //        CategoryId = SelectedCategoryId
+        //    };
+
+        //    await _dbContext.CourseList.AddAsync(courseList);
+        //    course.CourseListId = courseList.Id;
+        //    await _dbContext.Courses.AddAsync(course);
+
+        //    await _dbContext.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Course course, int categoryId)
+        public async Task<IActionResult> Create(int SelectedCategoryId, CourseViewModel courseViewModel)
         {
             var categories = await _dbContext.Categories.Where(x => x.IsDeleted == false).ToListAsync();
             ViewBag.Categories = categories;
-               
 
             if (!ModelState.IsValid)
             {
                 return View();
             }
-
-            var isExist = await _dbContext.Courses.Where(x => x.IsDeleted == false).AnyAsync(x => x.Name.ToLower() == course.Name.ToLower());
-            if (isExist)
-            {
-                ModelState.AddModelError("Name", "This course is already exist");
-                return View();
-            }
-
-            if(categories.All(x => x.Id != categoryId))
+            if (categories.All(x => x.Id != SelectedCategoryId))
             {
                 return NotFound();
             }
+            //var course = _dbContext.Courses.Where(x => x.IsDeleted == false).Include(x => x.CourseList)
+            //             .ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id);
 
-            if (course.Photo == null || course.Photo.Length == 0)
+            //if (course == null)
+            //    return NotFound();
+
+            var isExist = await _dbContext.Courses.Where(x => x.IsDeleted == false)
+                          .AnyAsync(x => x.Name.ToLower() == courseViewModel.Course.Name.ToLower()
+                           && x.Id != courseViewModel.Id);
+            if (isExist)
             {
-                ModelState.AddModelError("Photo", "Please select photo");
-                return View();
+                ModelState.AddModelError("Name", "This course is already exist");
+                return View(courseViewModel);
             }
 
-            if (!course.Photo.IsImage())
+            if (courseViewModel.Course.Photo != null && courseViewModel.Course.Photo.Length > 0)
             {
-                ModelState.AddModelError("Photo", "This file is not image");
-                return View();
+                if (!courseViewModel.Course.Photo.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "This file is not image");
+                    return View(courseViewModel);
+                }
+
+                if (!courseViewModel.Course.Photo.IsSizeAllowed(1024))
+                {
+                    ModelState.AddModelError("Photo", "Size of image is more than 1 MB");
+                    return View(courseViewModel);
+                }
+
+                //old image deleted
+                //var oldImagePath = Path.Combine(Constants.CourseImagesFolderPath, course.Image);
+                //if (System.IO.File.Exists(oldImagePath))
+                //{
+                //    System.IO.File.Delete(oldImagePath);
+                //}
+
+                //new image created
+                var fileName = await FileUtil.GenerateFile(Constants.CourseImagesFolderPath, courseViewModel.Course.Photo);
+
+                courseViewModel.Course.Image = fileName;
+                
             }
 
-            if (!course.Photo.IsSizeAllowed(1024))
+
+            var course = new Course
             {
-                ModelState.AddModelError("Photo", "Size of image is more than 1 MB");
-                return View();
-            }
+                Name = courseViewModel.Course.Name,
+                AboutCourse = courseViewModel.Course.AboutCourse,
+                HowToApply = courseViewModel.Course.HowToApply,
+                Certification = courseViewModel.Course.Certification,
+                Image = courseViewModel.Course.Image,
+                Starts = courseViewModel.Course.Starts,
+                Duration = courseViewModel.Course.Duration,
+                ClassDuration = courseViewModel.Course.ClassDuration,
+                SkillLevel = courseViewModel.Course.SkillLevel,
+                Language = courseViewModel.Course.Language,
+                Students = courseViewModel.Course.Students,
+                Assesments = courseViewModel.Course.Assesments,
+                CourseFee = courseViewModel.Course.CourseFee
+            };
 
-            var fileName = await FileUtil.GenerateFile(Constants.ImageFolderPath, course.Photo);
+            course.CourseList.CategoryId = courseViewModel.SelectedCategoryId;
 
-            course.Image = fileName;
-            course.IsDeleted = false;
-            
             await _dbContext.Courses.AddAsync(course);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
 
         public async Task<IActionResult> Delete(int? id)
         {

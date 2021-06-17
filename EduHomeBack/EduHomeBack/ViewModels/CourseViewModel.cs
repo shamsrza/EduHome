@@ -12,5 +12,6 @@ namespace EduHomeBack.ViewModels
         public List<BlogList> BlogList { get; set; }
         public Course Course { get; set; }
         public List<Category> Categories { get; set; }
+        public int SelectedCategoryId { get; set; }
     }
 }

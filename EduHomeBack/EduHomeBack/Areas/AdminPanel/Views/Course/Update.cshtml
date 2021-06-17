@@ -7,11 +7,6 @@
 
 <div class="row" style="display: flex; flex-direction: column">
 <div> <img src="~/img/course/@Model.Course.Image" alt="course"></div>
-<div style="margin: 30px 0">
-    <form asp-action="DeleteImage">
-        <button type="submit" class="btn btn-danger mr-2">Delete Image</button>
-    </form>
-</div>
 </div>
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -22,29 +17,29 @@
                     <div class="form-group">
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Name">Change name</label>
-                            <input class="form-control" placeholder="@Model.Course.Name">
+                            <input class="form-control" asp-for="@Model.Course.Name">
                             <span asp-validation-for="@Model.Course.Name" class="text-danger"></span>
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.AboutCourse">Change information About Course</label>
-                            <textarea class="form-control" placeholder="@Model.Course.AboutCourse"></textarea>
+                            <textarea class="form-control" asp-for="@Model.Course.AboutCourse"></textarea>
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.HowToApply">Change information How To Apply</label>
-                            <textarea class="form-control" placeholder="@Model.Course.HowToApply"></textarea>
+                            <textarea class="form-control" asp-for="@Model.Course.HowToApply"></textarea>
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Certification">Change information about Certification</label>
-                            <textarea class="form-control" placeholder="Certification"></textarea>
+                            <textarea class="form-control" asp-for="@Model.Course.Certification"></textarea>
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.CourseList.Category">Change Category </label>
-                            <select name="Category" id="Category">
-                                @foreach (var item in ViewBag.Categories)
+                            <select name="SelectedCategoryId" id="Category">
+                                @foreach (var item in Model.Categories)
                                 {
                                     <option value="@item.Id">@item.Name</option>
                                 }
@@ -58,38 +53,38 @@
                         </div>
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Starts">Change course Start time</label>
-                            <input class="form-control" placeholder="@Model.Course.Starts">
+                            <input class="form-control" asp-for="@Model.Course.Starts">
                         </div>
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Duration">Change course Duration</label>
-                            <input class="form-control" placeholder="@Model.Course.Duration">
+                            <input class="form-control" asp-for="@Model.Course.Duration">
                         </div>
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.ClassDuration">Change Class Duration</label>
-                            <input class="form-control" placeholder="@Model.Course.ClassDuration">
+                            <input class="form-control" asp-for="@Model.Course.ClassDuration">
                         </div>
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.SkillLevel">Skill Level</label>
-                            <input class="form-control" placeholder="@Model.Course.SkillLevel">
+                            <input class="form-control" asp-for="@Model.Course.SkillLevel">
                         </div>
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Language">Language</label>
-                            <input class="form-control" placeholder="@Model.Course.Language">
+                            <input class="form-control" asp-for="@Model.Course.Language">
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Students">Students</label>
-                            <input class="form-control" placeholder="@Model.Course.Students">
+                            <input class="form-control" asp-for="@Model.Course.Students">
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.Assesments">Assesments</label>
-                            <input class="form-control" placeholder="@Model.Course.Assesments">
+                            <input class="form-control" asp-for="@Model.Course.Assesments">
                         </div>
 
                         <div style="margin-bottom: 50px">
                             <label asp-for="@Model.Course.CourseFee">Course Fee</label>
-                            <input class="form-control" placeholder="@Model.Course.CourseFee">
+                            <input class="form-control" asp-for="@Model.Course.CourseFee">
                         </div>
                     </div>
                      <button type="submit" class="btn btn-primary mr-2">Update</button>
